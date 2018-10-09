@@ -1,4 +1,4 @@
-require("enet")
+local enet = require("enet")
 
 -- MAJOR TODO LIST:
 -- keep settings after disconnecting & save them when entered for quick access on a client restart
@@ -6,7 +6,7 @@ require("enet")
 -- disallow general chat, force pms
 -- "memos" or whatever they were - the group chats Karkat kept making and fucking up
 
-version = "0.7"
+version = "0.7a"
 
 dateAndTime = os.date("%c", os.time())
 dateAndTime = string.gsub(string.sub(dateAndTime, 1, 8), "/", "-").."_"..string.gsub(string.sub(dateAndTime, 10), ":", ".")
@@ -152,7 +152,7 @@ function love.update(dt)
 	-- table.insert(textlog, "timeout")
   end
   
-  if #textlog > (math.floor(love.window.getHeight()/16)-2) then
+  if #textlog > (math.floor(love.graphics.getHeight()/16)-2) then
 	table.remove(textlog, 1)
   end
 end

@@ -1,0 +1,22 @@
+blue
+pink
+red
+light green
+gray
+yellow
+turquoise
+dark red
+orange
+dark green
+dark blue
+light blue
+dark purple
+dark green
+dark pink
+purple
+cyan
+light pink
+light orange
+green
+light gray
+dark gray

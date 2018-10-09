@@ -1,9 +1,9 @@
-require("enet")
+local enet = require("enet")
 
 -- debug global var
 DEBUG = false
 
-version = "0.7b"
+version = "0.7c"
 
 textlog = {}
 textcolor = {}
@@ -18,7 +18,7 @@ maxLength = 10
 
 local icon = love.image.newImageData("icon.png")
 love.window.setIcon( icon )
-love.graphics.setBackgroundColor(238,238,238)
+love.graphics.setBackgroundColor(238/255,238/255,238/255)
 love.graphics.setNewFont("cour.ttf", 12)
 
 dateAndTime = os.date("%c", os.time())
@@ -173,7 +173,7 @@ function love.update(dt)
 	-- table.insert(textlog, "timeout")
   end
   
-  if #textlog > (math.floor(love.window.getHeight()/16)-3) then
+  if #textlog > (math.floor(love.graphics.getHeight()/16)-3) then
     table.remove(textlog, 1)
   end
 end
@@ -184,21 +184,21 @@ function love.draw()
     love.graphics.print(textlog[i], 8, (i*16)-8)
   end
   setRGBfromname(ourcolor)
-  love.graphics.print(curText, 8, (math.floor(love.window.getHeight()/16)-1)*16)
+  love.graphics.print(curText, 8, (math.floor(love.graphics.getHeight()/16)-1)*16)
   
   setRGBfromname("none")
-  love.graphics.rectangle("fill", love.window.getWidth()-200, 0, 1, love.window.getHeight())
+  love.graphics.rectangle("fill", love.graphics.getWidth()-200, 0, 1, love.graphics.getHeight())
   
   setRGBfromname(ourcolor)
-  if peerList[1] then love.graphics.print(peerList[1].." (you)", love.window.getWidth()-192, 0) end
+  if peerList[1] then love.graphics.print(peerList[1].." (you)", love.graphics.getWidth()-192, 0) end
   for i=2,#peerList do
     if peerList[i] then
       setRGBfromname(getcolornamefromtext(string.upper(string.sub(peerList[i], 1, 1))..string.match(peerList[i], "%u")))
-	  love.graphics.print(peerList[i], love.window.getWidth()-192, 16*(i-1))
+	  love.graphics.print(peerList[i], love.graphics.getWidth()-192, 16*(i-1))
 	end
   end
   setRGBfromname("none")
-  if DEBUG then love.graphics.print("toutcnt: "..toutcnt, love.window.getWidth()-192, love.window.getHeight()-16) end
+  if DEBUG then love.graphics.print("toutcnt: "..toutcnt, love.graphics.getWidth()-192, love.graphics.getHeight()-16) end
 end
 
 function getcolornamefromtext(strIn)
